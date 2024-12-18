@@ -1,7 +1,8 @@
+import 'package:app_ban_gao/screen/HomePage.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
-  const Homescreen({super.key, required this.title});
+  Homescreen({super.key, required this.title});
 
   final String title;
 
@@ -14,7 +15,7 @@ class _HomeScreenState extends State<Homescreen> {
 
   // Các trang con
   final List<Widget> _pages = [
-    const Center(child: Text('Trang Chủ')),
+    Homepage(),
     const Center(child: Text('Giỏ Hàng')),
     const Center(child: Text('Cài Đặt')),
   ];

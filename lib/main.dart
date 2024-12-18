@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Homescreen(title: 'App Ban Gao'),
+      home: Homescreen(title: 'App Ban Gao'),
     );
   }
 }
