@@ -1,4 +1,8 @@
+import 'package:app_ban_gao/screen/FindPage.dart';
 import 'package:app_ban_gao/screen/HomePage.dart';
+import 'package:app_ban_gao/screen/Introduction.dart';
+import 'package:app_ban_gao/screen/Menu.dart';
+import 'package:app_ban_gao/screen/Shopping/Cart.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
@@ -15,12 +19,10 @@ class _HomeScreenState extends State<Homescreen> {
 
   final List<Widget> _pages = [
     Homepage(),
-    const Center(child: Text('Gioi Thieu')),
-    const Center(child: Text('Tim Kiem')),
-    const Center(child: Text('Gio Hang')),
-    const Center(
-      child: Text('Menu'),
-    ),
+    Introduction(),
+    FindPage(),
+    Cart(),
+    Menu(),
   ];
 
   @override
@@ -39,7 +41,7 @@ class _HomeScreenState extends State<Homescreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
-            label: 'Tài KKhoản',
+            label: 'Tài Khoản',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
