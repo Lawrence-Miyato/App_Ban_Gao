@@ -1,8 +1,16 @@
 import 'package:app_ban_gao/screen/page/HomeScreen.dart';
+import 'package:app_ban_gao/screen/shopping/Cart.dart';
+import 'package:app_ban_gao/screen/shopping/CartModel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CartModel(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

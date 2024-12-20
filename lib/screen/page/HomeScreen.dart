@@ -1,7 +1,7 @@
 import 'package:app_ban_gao/screen/Menu/Menu.dart';
 import 'package:app_ban_gao/screen/page/FindPage.dart';
 import 'package:app_ban_gao/screen/page/HomePage.dart';
-import 'package:app_ban_gao/screen/login/Introduction.dart';
+import 'package:app_ban_gao/screen/page/Introduction.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
