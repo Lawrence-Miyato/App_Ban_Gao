@@ -1,6 +1,6 @@
-import 'package:app_ban_gao/screen/CarouselPromotion.dart';
-import 'package:app_ban_gao/screen/CarouselPropose.dart';
-import 'package:app_ban_gao/screen/index.dart';
+import 'package:app_ban_gao/screen/carousel/CarouselPromotion.dart';
+import 'package:app_ban_gao/screen/carousel/CarouselPropose.dart';
+import 'package:app_ban_gao/screen/page/Index.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
