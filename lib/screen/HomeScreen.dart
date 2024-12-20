@@ -24,7 +24,6 @@ class _HomeScreenState extends State<Homescreen> {
     Cart(),
     Menu(),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
