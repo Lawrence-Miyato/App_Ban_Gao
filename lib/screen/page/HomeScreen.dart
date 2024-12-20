@@ -1,8 +1,7 @@
-import 'package:app_ban_gao/screen/Menu.dart';
-import 'package:app_ban_gao/screen/Shopping/Cart.dart';
+import 'package:app_ban_gao/screen/Menu/Menu.dart';
 import 'package:app_ban_gao/screen/page/FindPage.dart';
 import 'package:app_ban_gao/screen/page/HomePage.dart';
-import 'package:app_ban_gao/screen/page/Introduction.dart';
+import 'package:app_ban_gao/screen/login/Introduction.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
@@ -21,7 +20,6 @@ class _HomeScreenState extends State<Homescreen> {
     Homepage(),
     Introduction(),
     FindPage(),
-    Cart(),
     Menu(),
   ];
   @override
@@ -45,10 +43,6 @@ class _HomeScreenState extends State<Homescreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'Tìm Kiếm',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
-            label: 'Giỏ Hàng',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu),
