@@ -1,6 +1,5 @@
 import 'package:app_ban_gao/screen/shopping/Cart.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'popup.dart'; // Import Popup widget để hiển thị thông tin sản phẩm
 
 class Menu extends StatelessWidget {
