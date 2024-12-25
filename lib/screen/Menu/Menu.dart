@@ -17,8 +17,7 @@ class _MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Menu'),
-        backgroundColor: Colors.grey[400],
+        backgroundColor: Colors.grey[200],
         actions: [
           Consumer<CartModel>(
             // Dùng Consumer để theo dõi CartModel
@@ -31,7 +30,7 @@ class _MenuState extends State<Menu> {
                 ),
                 showBadge: cartModel.itemCount > 0,
                 child: IconButton(
-                  icon: const Icon(Icons.shopping_cart),
+                  icon: const Icon(Icons.shopping_cart_sharp),
                   onPressed: () {
                     Navigator.push(
                       context,

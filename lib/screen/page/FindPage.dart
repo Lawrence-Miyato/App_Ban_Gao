@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
-class FindPage extends StatelessWidget {
-  const FindPage({super.key});
+class Findpage extends StatelessWidget {
+  const Findpage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Tim Kiem'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tìm Kiếm'),
+      ),
+      body: Container(
+        child: Center(
+          child: Text('Trang Tìm Kiếm'),
+        ),
+      ),
     );
   }
 }

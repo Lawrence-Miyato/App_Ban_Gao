@@ -39,7 +39,7 @@ class _MyWidgetState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: Container(
           height: screenHeight,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/kinh-nghiem-ban-gao-le.jpg'),
               fit: BoxFit.cover,
@@ -50,7 +50,7 @@ class _MyWidgetState extends State<LoginPage> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: ConstrainedBox(
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 400, // Giới hạn chiều ngang tối đa
                 ),
                 child: Card(

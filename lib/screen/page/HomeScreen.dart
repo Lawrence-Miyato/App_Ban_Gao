@@ -1,63 +1,99 @@
 import 'package:app_ban_gao/screen/Menu/Menu.dart';
-import 'package:app_ban_gao/screen/page/FindPage.dart';
-import 'package:app_ban_gao/screen/page/HomePage.dart';
 import 'package:app_ban_gao/screen/login/LoginPage.dart';
+import 'package:app_ban_gao/screen/page/FindPage.dart'; // Đảm bảo đã import FindPage
+import 'package:app_ban_gao/screen/page/HomePage.dart';
+import 'package:app_ban_gao/screen/page/SetttingPage.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
-  const Homescreen({super.key, required this.title});
-
   final String title;
+  final Function(String) onTitleChange;
+
+  const Homescreen({
+    Key? key,
+    required this.title,
+    required this.onTitleChange,
+  }) : super(key: key);
 
   @override
-  State<Homescreen> createState() => _HomeScreenState();
+  _HomescreenState createState() => _HomescreenState();
 }
 
-class _HomeScreenState extends State<Homescreen> {
+class _HomescreenState extends State<Homescreen> {
+  // Khởi tạo index để xác định trang hiện tại
   int _currentIndex = 0;
 
+  // Danh sách các widget đại diện cho các trang tương ứng
   final List<Widget> _pages = [
-    Homepage(),
-    LoginPage(),
-    FindPage(),
-    Menu(),
+    Homepage(), //Trang Thông Tin
+    const Menu(), // Trang Sản Phẩm
+    const LoginPage(), //Trang Đăng Nhập
+    const Setttingpage(), //Trang Cài Đặt
   ];
+
+  // Hàm xử lý thay đổi màn hình
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+      // Cập nhật tiêu đề theo màn hình đã chọn
+      if (index == 0) {
+        widget.onTitleChange('Thông Tin');
+      } else if (index == 1) {
+        widget.onTitleChange('Sản Phẩm');
+      } else if (index == 2) {
+        widget.onTitleChange('Đăng Nhập / Đăng Ký');
+      } else if (index == 3) {
+        widget.onTitleChange('Cài Đặt');
+      }
+    });
+  }
+
+  // Hàm mở trang tìm kiếm (chuyển hướng đến FindPage)
+  void _openSearch() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => const Findpage()), // Chuyển hướng tới FindPage
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: Colors.pink[100],
-      ),
-      body: _pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Trang Chủ',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Tài Khoản',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Tìm Kiếm',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            label: 'Menu',
+        backgroundColor: Colors.pink[200],
+        actions: [
+          // Nút tìm kiếm chuyển hướng tới FindPage
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: _openSearch, // Khi ấn vào, gọi hàm _openSearch
           ),
         ],
-        currentIndex: _currentIndex,
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+      ),
+      body: _pages[_currentIndex], // Hiển thị trang tương ứng với index
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex, // Chỉ mục của tab hiện tại
+        onTap: _onItemTapped, // Hàm xử lý khi người dùng chọn tab
+        type: BottomNavigationBarType.fixed,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info_outlined),
+            label: 'Giới Thiệu',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag_sharp),
+            label: 'Sản Phẩm',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle_sharp),
+            label: 'Đăng Nhập',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_sharp),
+            label: 'Cài Đặt',
+          ),
+        ],
       ),
     );
   }

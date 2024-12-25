@@ -13,16 +13,6 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Home Page',
-          style: TextStyle(
-            fontSize: 24,
-            fontFamily: 'Times New Roman',
-          ),
-        ),
-        backgroundColor: Colors.pink[50],
-      ),
       body: ListView(
         children: [
           const SizedBox(
