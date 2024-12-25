@@ -29,14 +29,17 @@ class Cart extends StatelessWidget {
             );
           }
 
-          // Tính tổng số tiền cần thanh toán
+          // Tính tổng số tiền của các sản phẩm đã chọn
           double totalAmount = 0;
-          for (var item in cartModel.cartItems) {
-            totalAmount += double.parse(item['price']
-                    .replaceAll('₫', '')
-                    .replaceAll('.', '')
-                    .replaceAll(',', '')) *
-                item['quantity'];
+          for (int i = 0; i < cartModel.cartItems.length; i++) {
+            if (cartModel.selectedItems[i]) {
+              var item = cartModel.cartItems[i];
+              totalAmount += double.parse(item['price']
+                      .replaceAll('₫', '')
+                      .replaceAll('.', '')
+                      .replaceAll(',', '')) *
+                  item['quantity'];
+            }
           }
 
           // Sử dụng NumberFormat để định dạng số tiền với dấu phân cách nghìn
@@ -140,52 +143,61 @@ class Cart extends StatelessWidget {
                     ],
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // Phần tổng cộng bên trái
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Tổng cộng:',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black54,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Tổng cộng: (Sản phẩm đã chọn)',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black54,
+                              ),
                             ),
-                          ),
-                          Text(
-                            formattedAmountWithCurrency, // Hiển thị số tiền đã được định dạng với đơn vị tiền tệ
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green,
+                            Text(
+                              formattedAmountWithCurrency, // Hiển thị số tiền đã được định dạng với đơn vị tiền tệ
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       // Nút thanh toán bên phải
                       ElevatedButton(
-                        onPressed: () {
-                          // Logic thanh toán sẽ được thêm vào đây
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: const Text('Thanh toán thành công!'),
-                                content: const Text(
-                                    'Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi!'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
+                        onPressed: totalAmount > 0
+                            ? () {
+                                // Logic thanh toán
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title:
+                                          const Text('Thanh toán thành công!'),
+                                      content: const Text(
+                                          'Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi!'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+
+                                            // Xóa các sản phẩm đã chọn khỏi giỏ hàng sau khi thanh toán
+                                            context
+                                                .read<CartModel>()
+                                                .removeSelectedItems();
+                                          },
+                                          child: const Text('OK'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            : null, // Vô hiệu hóa nút nếu không có sản phẩm nào được chọn
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 32.0, vertical: 16.0),
