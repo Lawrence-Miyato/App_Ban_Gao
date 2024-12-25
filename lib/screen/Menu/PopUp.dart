@@ -1,19 +1,17 @@
-import 'package:app_ban_gao/screen/shopping/Cart.dart';
-import 'package:app_ban_gao/screen/shopping/CartModel.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class Popup extends StatefulWidget {
   final Map<String, dynamic> item;
+  final Function(int) onAddToCart; // Callback để thêm vào giỏ hàng
 
-  const Popup({super.key, required this.item});
+  const Popup({super.key, required this.item, required this.onAddToCart});
 
   @override
   _PopupState createState() => _PopupState();
 }
 
 class _PopupState extends State<Popup> {
-  int _quantity = 1; // Khởi tạo số lượng mặc định là 1
+  int quantity = 1; // Khởi tạo số lượng ban đầu
 
   @override
   Widget build(BuildContext context) {
@@ -22,67 +20,63 @@ class _PopupState extends State<Popup> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.network(widget.item['image'], width: 100, height: 100),
-          const SizedBox(height: 10),
+          Image.network(
+            widget.item['image'],
+            width: 100,
+            height: 100,
+            fit: BoxFit.cover,
+          ),
           Text('Giá: ${widget.item['price']}'),
-
-          // Thanh chọn số lượng
-          const SizedBox(height: 15),
+          SizedBox(
+            height: 20,
+          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Căn giữa các widget trong Row
             children: [
               IconButton(
                 icon: const Icon(Icons.remove),
                 onPressed: () {
-                  setState(() {
-                    if (_quantity > 1) {
-                      _quantity--;
-                    }
-                  });
+                  if (quantity > 1) {
+                    setState(() {
+                      quantity--;
+                    });
+                  }
                 },
               ),
-              Text('Số lượng: $_quantity',
-                  style: const TextStyle(fontSize: 16)),
+              Text('$quantity'),
               IconButton(
                 icon: const Icon(Icons.add),
                 onPressed: () {
                   setState(() {
-                    _quantity++;
+                    quantity++;
                   });
                 },
               ),
             ],
-          ),
+          )
         ],
       ),
       actions: [
         TextButton(
-          child: const Text('Thêm vào giỏ hàng'),
           onPressed: () {
-            // Thêm sản phẩm vào giỏ hàng với số lượng đã chọn
-            Provider.of<CartModel>(context, listen: false)
-                .addItem(widget.item, _quantity);
-
-            // Đóng pop-up
-            Navigator.of(context).pop();
+            widget.onAddToCart(
+                quantity); // Gọi callback khi người dùng thêm sản phẩm vào giỏ hàng
+            Navigator.pop(context);
           },
+          child: const Text('Thêm vào giỏ'),
         ),
         TextButton(
-          child: const Text('Mua Ngay'),
           onPressed: () {
-            // Thêm sản phẩm vào giỏ hàng với số lượng đã chọn
-            Provider.of<CartModel>(context, listen: false)
-                .addItem(widget.item, _quantity);
-
-            // Chuyển hướng đến trang giỏ hàng
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      const Cart()), // Chuyển hướng tới trang Cart
-            );
+            // Thực hiện hành động mua ngay
+            // Ví dụ: chuyển hướng đến trang thanh toán
+            Navigator.pop(context); // Đóng popup
+            // Thực hiện hành động mua ngay, ví dụ chuyển đến trang thanh toán
+            // Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentPage()));
+            // Hoặc có thể gọi một callback khác cho hành động này
           },
-        )
+          child: const Text('Mua ngay'),
+        ),
       ],
     );
   }
