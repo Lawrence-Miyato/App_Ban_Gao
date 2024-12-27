@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "601177029423",
+    "project_id": "my-project-backend-e0a41",
+    "storage_bucket": "my-project-backend-e0a41.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601177029423:android:52bd0cc9717cbc75daffda",
+        "android_client_info": {
+          "package_name": "com.example.appbango"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7aC9WzSsrKZjQ5JNJe-1P1DuRjNMTFcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
