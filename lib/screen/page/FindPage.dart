@@ -7,7 +7,7 @@ class Findpage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tìm Kiếm'),
+        title: const Text('Tìm Kiếm'),
       ),
       body: Container(
         child: Center(
