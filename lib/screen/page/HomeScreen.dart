@@ -67,47 +67,46 @@ class _HomescreenState extends State<Homescreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor: Colors.pink[200],
-        actions: _currentIndex == 2 || _currentIndex == 3
-            ? null // Không hiển thị nút trên trang Đăng Nhập và Cài Đặt
-            : [
-                if (_currentIndex == 1) ...[
-                  IconButton(
-                    icon: const Icon(Icons.search),
-                    onPressed: _openSearch, // Khi ấn vào, gọi hàm _openSearch
-                  ),
-                  Consumer<CartModel>(
-                    builder: (context, cartModel, child) {
-                      return badges.Badge(
-                        position: badges.BadgePosition.topEnd(top: 0, end: 3),
-                        badgeContent: Text(
-                          cartModel.itemCount.toString(),
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 12),
-                        ),
-                        showBadge: cartModel.itemCount > 0,
-                        child: IconButton(
-                          icon: const Icon(Icons.shopping_cart),
-                          onPressed: () {
-                            // Chuyển hướng tới giỏ hàng
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Cart()),
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ] else
-                  IconButton(
-                    icon: const Icon(Icons.search),
-                    onPressed: _openSearch, // Khi ấn vào, gọi hàm _openSearch
-                  ),
-              ],
-      ),
+          title: Text(widget.title),
+          backgroundColor: Colors.pink[200],
+          actions: _currentIndex == 2 || _currentIndex == 3
+              ? null // Không hiển thị nút trên trang Đăng Nhập và Cài Đặt
+              : [
+                  if (_currentIndex == 1) ...[
+                    IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: _openSearch, // Khi ấn vào, gọi hàm _openSearch
+                    ),
+                    Consumer<CartModel>(
+                      builder: (context, cartModel, child) {
+                        return badges.Badge(
+                          position: badges.BadgePosition.topEnd(top: 0, end: 3),
+                          badgeContent: Text(
+                            cartModel.itemCount.toString(),
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 12),
+                          ),
+                          showBadge: cartModel.itemCount > 0,
+                          child: IconButton(
+                            icon: const Icon(Icons.shopping_cart),
+                            onPressed: () {
+                              // Chuyển hướng tới giỏ hàng
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Cart()),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ] else
+                    IconButton(
+                      icon: const Icon(Icons.search),
+                      onPressed: _openSearch, // Khi ấn vào, gọi hàm _openSearch
+                    ),
+                ]),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.grey[100],
