@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:app_ban_gao/screen/page/Homepage.dart'; // Thêm import của Homepage
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -20,13 +21,13 @@ class _MyWidgetState extends State<LoginPage> {
 
   void _handleGoogleSignIn() {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Google sign-in not implemented')),
+      const SnackBar(content: Text('Google sign-in not implemented')),
     );
   }
 
   void _handleFacebookSignIn() {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Facebook sign-in not implemented')),
+      const SnackBar(content: Text('Facebook sign-in not implemented')),
     );
   }
 
@@ -66,10 +67,10 @@ class _MyWidgetState extends State<LoginPage> {
                       children: [
                         Text(
                           isRegistering ? 'Đăng ký' : 'Đăng nhập',
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         Form(
                           key: _formKey,
                           child: Column(
@@ -77,7 +78,7 @@ class _MyWidgetState extends State<LoginPage> {
                               if (isRegistering) ...[
                                 TextFormField(
                                   controller: _firstNameController,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     labelText: 'Họ',
                                     prefixIcon: Icon(Icons.person),
                                   ),
@@ -88,7 +89,7 @@ class _MyWidgetState extends State<LoginPage> {
                                     return null;
                                   },
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 TextFormField(
                                   controller: _lastNameController,
                                   decoration: const InputDecoration(
@@ -102,11 +103,11 @@ class _MyWidgetState extends State<LoginPage> {
                                     return null;
                                   },
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                               ],
                               TextFormField(
                                 controller: _emailController,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   labelText: 'Email',
                                   prefixIcon: Icon(Icons.email),
                                 ),
@@ -117,11 +118,11 @@ class _MyWidgetState extends State<LoginPage> {
                                   return null;
                                 },
                               ),
-                              SizedBox(height: 16),
+                              const SizedBox(height: 16),
                               TextFormField(
                                 controller: _passwordController,
                                 obscureText: true,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   labelText: 'Mật khẩu',
                                   prefixIcon: Icon(Icons.lock),
                                 ),
@@ -132,12 +133,12 @@ class _MyWidgetState extends State<LoginPage> {
                                   return null;
                                 },
                               ),
-                              SizedBox(height: 16),
+                              const SizedBox(height: 16),
                               if (isRegistering) ...[
                                 TextFormField(
                                   controller: _confirmPasswordController,
                                   obscureText: true,
-                                  decoration: InputDecoration(
+                                  decoration: const InputDecoration(
                                     labelText: 'Xác nhận mật khẩu',
                                     prefixIcon: Icon(Icons.lock),
                                   ),
@@ -151,24 +152,51 @@ class _MyWidgetState extends State<LoginPage> {
                                     return null;
                                   },
                                 ),
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                               ],
                               ElevatedButton(
                                 onPressed: () {
                                   if (_formKey.currentState?.validate() ??
                                       false) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content: Text('Đang tải dữ liệu...')),
-                                    );
+                                    // Kiểm tra tài khoản và mật khẩu cứng
+                                    if (!isRegistering &&
+                                        _emailController.text == 'admin' &&
+                                        _passwordController.text == '123456') {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content:
+                                                Text('Đăng nhập thành công')),
+                                      );
+                                      // Chuyển đến trang Homepage sau khi đăng nhập thành công
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Homepage()),
+                                      );
+                                    } else if (!isRegistering) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content: Text(
+                                                'Tài khoản hoặc mật khẩu không đúng')),
+                                      );
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content:
+                                                Text('Đang tải dữ liệu...')),
+                                      );
+                                    }
                                   }
                                 },
                                 child: Text(
                                     isRegistering ? 'Đăng ký' : 'Đăng nhập'),
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               if (!isRegistering) ...[
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -203,7 +231,7 @@ class _MyWidgetState extends State<LoginPage> {
                                         label: const Text(
                                             "Đăng nhập với Facebook"),
                                         style: ElevatedButton.styleFrom(
-                                          minimumSize: Size(0, 50),
+                                          minimumSize: const Size(0, 50),
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 8),
                                         ),
@@ -212,7 +240,7 @@ class _MyWidgetState extends State<LoginPage> {
                                   ],
                                 ),
                               ],
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
