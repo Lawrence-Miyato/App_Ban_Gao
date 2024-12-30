@@ -13,7 +13,7 @@ class _PaypageState extends State<Paypage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Thanh ToánToán'),
+        title: Text('Thanh Toán'),
       ),
     );
   }
