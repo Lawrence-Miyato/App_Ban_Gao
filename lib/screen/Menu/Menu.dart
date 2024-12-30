@@ -1,4 +1,4 @@
-import 'package:app_ban_gao/screen/Menu/PopUp.dart';
+import 'package:app_ban_gao/screen/menu/PopUp.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
