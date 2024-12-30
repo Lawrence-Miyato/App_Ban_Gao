@@ -1,4 +1,5 @@
 import 'package:app_ban_gao/main.dart';
+import 'package:app_ban_gao/screen/page/HomeScreen.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,13 +22,14 @@ class _MyWidgetState extends State<LoginPage> {
 
   void _handleGoogleSignIn() {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Google sign-in not implemented')),
+      const SnackBar(
+          content: Text('Đăng nhập bằng Google chưa được triển khai')),
     );
   }
 
   void _handleFacebookSignIn() {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Facebook sign-in not implemented')),
+      const SnackBar(content: Text('Đăng nhập Facebook không được triển khai')),
     );
   }
 
@@ -159,8 +161,7 @@ class _MyWidgetState extends State<LoginPage> {
                                   if (_formKey.currentState?.validate() ??
                                       false) {
                                     // Kiểm tra tài khoản và mật khẩu cứng
-                                    if (!isRegistering &&
-                                        _emailController.text == 'admin' &&
+                                    if (_emailController.text == 'admin' &&
                                         _passwordController.text == '123456') {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -168,11 +169,16 @@ class _MyWidgetState extends State<LoginPage> {
                                             content:
                                                 Text('Đăng nhập thành công')),
                                       );
-                                      // Chuyển đến trang Homepage sau khi đăng nhập thành công
+                                      // Chuyển đến Homescreen và truyền trạng thái đăng nhập
                                       Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => MyApp()),
+                                          builder: (context) => Homescreen(
+                                            title: "Trang chủ",
+                                            onTitleChange: (newTitle) {},
+                                            isLoggedIn: true, // Đã đăng nhập
+                                          ),
+                                        ),
                                       );
                                     } else if (!isRegistering) {
                                       ScaffoldMessenger.of(context)
