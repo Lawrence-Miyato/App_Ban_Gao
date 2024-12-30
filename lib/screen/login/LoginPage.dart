@@ -1,5 +1,5 @@
+import 'package:app_ban_gao/main.dart';
 import 'package:flutter/material.dart';
-import 'package:app_ban_gao/screen/page/Homepage.dart'; // Thêm import của Homepage
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -172,7 +172,7 @@ class _MyWidgetState extends State<LoginPage> {
                                       Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => Homepage()),
+                                            builder: (context) => MyApp()),
                                       );
                                     } else if (!isRegistering) {
                                       ScaffoldMessenger.of(context)
