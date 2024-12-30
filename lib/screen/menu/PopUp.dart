@@ -75,6 +75,7 @@ class _PopupState extends State<Popup> {
               children: [
                 IconButton(
                   icon: const Icon(Icons.remove),
+                  iconSize: 30.0,
                   onPressed: () {
                     if (quantity > 1) {
                       setState(() {
@@ -86,11 +87,12 @@ class _PopupState extends State<Popup> {
                 Text(
                   '$quantity',
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
                   ),
                 ),
                 IconButton(
                   icon: const Icon(Icons.add),
+                  iconSize: 30.0,
                   onPressed: () {
                     setState(() {
                       quantity++;
