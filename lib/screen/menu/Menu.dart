@@ -83,7 +83,9 @@ class _MenuState extends State<Menu> {
       'name': 'Gạo lứt hỗn hợp 10 loại hạt Ông Cụ hộp 1kg',
       'price': '49.000₫',
       'image':
-          'https://cdnv2.tgdd.vn/bhx-static/bhx/Products/Images/2513/329788/bhx/thiet-ke-chua-co-ten-2024-09-11t143052168_202409111431553581.jpg'
+          'https://cdnv2.tgdd.vn/bhx-static/bhx/Products/Images/2513/329788/bhx/thiet-ke-chua-co-ten-2024-09-11t143052168_202409111431553581.jpg',
+      'description':
+          'Gạo lứt hỗn hợp 10 loại hạt Ông Cụ hộp 1kg là loại gạo lứt đặc biệt, được chọn lọc từ giống lúa phù hợp và sản xuất thông qua quá trình thủy nhiệt dưới áp suất cao trước khi sấy khô và tách bỏ lớp vỏ trấu bên ngoài. Đặc biệt, gạo lứt không cần phải ngâm gạo trước khi nấu nhưng vẫn cho hạt cơm mềm và bùi. Đây là sản phẩm chất lượng cung cấp nhiều chất dinh dưỡng cho cơ thể.'
     },
     {
       'name': 'Gạo thơm A An ST25',

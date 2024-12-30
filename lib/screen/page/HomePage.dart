@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
   Homepage({super.key});
+
   @override
   State<Homepage> createState() => _HomepageState();
 }
@@ -52,7 +53,7 @@ class _HomepageState extends State<Homepage> {
           const SizedBox(
             height: 20,
           ),
-          Index(),
+          const Index(),
         ],
       ),
     );
