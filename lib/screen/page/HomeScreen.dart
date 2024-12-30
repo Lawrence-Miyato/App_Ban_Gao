@@ -72,11 +72,12 @@ class _HomescreenState extends State<Homescreen> {
           actions: _currentIndex == 2 || _currentIndex == 3
               ? null // Không hiển thị nút trên trang Đăng Nhập và Cài Đặt
               : [
-                  if (_currentIndex == 1) ...[
+                  if (_currentIndex == 0) ...[
                     IconButton(
                       icon: const Icon(Icons.search),
                       onPressed: _openSearch, // Khi ấn vào, gọi hàm _openSearch
                     ),
+                  ] else if (_currentIndex == 1) ...[
                     Consumer<CartModel>(
                       builder: (context, cartModel, child) {
                         return badges.Badge(
@@ -101,11 +102,7 @@ class _HomescreenState extends State<Homescreen> {
                         );
                       },
                     ),
-                  ] else
-                    IconButton(
-                      icon: const Icon(Icons.search),
-                      onPressed: _openSearch, // Khi ấn vào, gọi hàm _openSearch
-                    ),
+                  ]
                 ]),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -142,7 +139,7 @@ class _HomescreenState extends State<Homescreen> {
                   label: 'Cài Đặt',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.account_circle_sharp),
+                  icon: Icon(Icons.logout_outlined),
                   label: 'Đăng Nhập',
                 ),
               ],
