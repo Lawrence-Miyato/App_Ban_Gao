@@ -13,12 +13,12 @@ class _CarouselpromotionState extends State<Carouselpromotion> {
   Widget build(BuildContext context) {
     //Luu danh sach hinh anh
     List<String> listproduct = [
-      'https://cdnv2.tgdd.vn/bhx-static/bhx/Products/Images/2513/329788/bhx/thiet-ke-chua-co-ten-2024-09-11t143052168_202409111431553581.jpg',
-      'https://cdnv2.tgdd.vn/bhx-static/bhx/Products/Images/2513/332920/bhx/thiet-ke-chua-co-ten-2024-12-17t142205261_202412171422573674.jpg',
-      'https://cdnv2.tgdd.vn/bhx-static/bhx/Products/Images/2513/329073/bhx/thiet-ke-chua-co-ten-2024-10-07t105404016_202410071054131398.jpg',
-      'https://cdn.tgdd.vn/Products/Images/2513/262356/bhx/sellingpoint.jpg',
-      'https://cdn.tgdd.vn/Products/Images/2513/262354/bhx/sellingpoint.jpg',
-      'https://cdnv2.tgdd.vn/bhx-static/bhx/Products/Images/2513/220504/bhx/thiet-ke-chua-co-ten-2024-12-03t094114079_202412030942196840.jpg'
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMe21zFpZXkEPs-lVcg6K4PLlanwTbP6e1mA&s',
+      'https://megaon.vn/wp-content/uploads/upload1/baner3ff627881c42912a4b07d796cd4efa.jpg',
+      'https://house.hunghau.vn/wp-content/uploads/2019/08/3.png',
+      'https://file.hstatic.net/200000401369/article/8-12_banner_e4a86e225e974c878fab3d8718713320_grande.jpg',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC8mjs0CLgfuHhlNFHhdgwfLcZRgxwjBdpVw&s',
+      'https://cdn.tgdd.vn/Files/2021/12/15/1404530/gao-ngon-deo-thom-bua-com-dam-am-giam-den-18-202112151156198207.jpg'
     ];
     return Container(
       child: CarouselSlider(
