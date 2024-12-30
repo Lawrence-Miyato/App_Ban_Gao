@@ -2,8 +2,6 @@ import 'package:app_ban_gao/screen/Menu/PopUp.dart';
 import 'package:app_ban_gao/screen/menu/MenuItem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:badges/badges.dart' as badges;
-import 'package:app_ban_gao/screen/shopping/Cart.dart';
 import 'package:app_ban_gao/screen/shopping/CartModel.dart';
 
 class Menu extends StatefulWidget {

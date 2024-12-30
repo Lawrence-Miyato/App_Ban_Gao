@@ -1,4 +1,3 @@
-import 'package:app_ban_gao/main.dart';
 import 'package:app_ban_gao/screen/page/HomeScreen.dart';
 import 'package:flutter/material.dart';
 
