@@ -1,4 +1,5 @@
 import 'package:app_ban_gao/screen/page/HomeScreen.dart';
+import 'package:app_ban_gao/screen/page/SetttingPage.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -37,6 +38,25 @@ class _MyWidgetState extends State<LoginPage> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Đăng Nhập / Đăng Ký'),
+        backgroundColor: Colors.pink[200],
+        leading: IconButton(
+            icon: const Icon(
+                Icons.arrow_back), // Thay đổi icon thành mũi tên quay lại
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Homescreen(
+                    title: "Bán Gạo 2024",
+                    onTitleChange: (newTitle) {},
+                    isLoggedIn: false, // Đã đăng xuất
+                  ),
+                ),
+              );
+            }),
+      ),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Container(

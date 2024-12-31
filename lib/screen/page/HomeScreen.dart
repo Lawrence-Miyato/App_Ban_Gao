@@ -1,6 +1,6 @@
 import 'package:app_ban_gao/screen/menu/Menu.dart';
 import 'package:app_ban_gao/screen/login/LoginPage.dart';
-import 'package:app_ban_gao/screen/page/FindPage.dart'; // Đảm bảo đã import FindPage
+import 'package:app_ban_gao/screen/page/FindPage.dart';
 import 'package:app_ban_gao/screen/page/HomePage.dart';
 import 'package:app_ban_gao/screen/page/SetttingPage.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class Homescreen extends StatefulWidget {
     Key? key,
     required this.title,
     required this.onTitleChange,
-    this.isLoggedIn = false, // Mặc định là chưa đăng nhập
+    this.isLoggedIn = false,
   }) : super(key: key);
 
   @override
@@ -28,29 +28,31 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [
-    Homepage(), // Trang Thông Tin
-    const Menu(), // Trang Sản Phẩm
-    const Setttingpage(), // Trang Cài Đặt
-    const LoginPage(), // Trang Đăng Nhập
-  ];
+  late List<Widget> _pages;
 
-  // Logic xác định trạng thái navigation
-  int navigationState() {
-    return widget.isLoggedIn ? 1 : 2;
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+      Homepage(), // Trang Thông Tin
+      const Menu(), // Trang Sản Phẩm
+      Setttingpage(isLoggedIn: widget.isLoggedIn), // Trang Cài Đặt
+    ];
   }
 
   void _onItemTapped(int index) {
     setState(() {
       _currentIndex = index;
-      if (index == 0) {
-        widget.onTitleChange('Thông Tin');
-      } else if (index == 1) {
-        widget.onTitleChange('Sản Phẩm');
-      } else if (index == 2) {
-        widget.onTitleChange('Cài Đặt');
-      } else if (index == 3 && navigationState() == 2) {
-        widget.onTitleChange('Đăng Ký / Đăng Nhập');
+      switch (index) {
+        case 0:
+          widget.onTitleChange('Thông Tin');
+          break;
+        case 1:
+          widget.onTitleChange('Sản Phẩm');
+          break;
+        case 2:
+          widget.onTitleChange('Thiết Lập Tài Khoản');
+          break;
       }
     });
   }
@@ -59,7 +61,8 @@ class _HomescreenState extends State<Homescreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => const Findpage()), // Chuyển hướng tới FindPage
+        builder: (context) => const Findpage(),
+      ),
     );
   }
 
@@ -67,82 +70,65 @@ class _HomescreenState extends State<Homescreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(widget.title),
-          backgroundColor: Colors.pink[200],
-          actions: _currentIndex == 2 || _currentIndex == 3
-              ? null // Không hiển thị nút trên trang Đăng Nhập và Cài Đặt
-              : [
-                  if (_currentIndex == 0) ...[
-                    IconButton(
-                      icon: const Icon(Icons.search),
-                      onPressed: _openSearch, // Khi ấn vào, gọi hàm _openSearch
-                    ),
-                  ] else if (_currentIndex == 1) ...[
-                    Consumer<CartModel>(
-                      builder: (context, cartModel, child) {
-                        return badges.Badge(
-                          position: badges.BadgePosition.topEnd(top: 0, end: 3),
-                          badgeContent: Text(
-                            cartModel.itemCount.toString(),
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 12),
+        title: Text(widget.title),
+        backgroundColor: Colors.pink[200],
+        actions: _currentIndex == 2
+            ? null
+            : [
+                if (_currentIndex == 0)
+                  IconButton(
+                    icon: const Icon(Icons.search),
+                    onPressed: _openSearch,
+                  ),
+                if (_currentIndex == 1)
+                  Consumer<CartModel>(
+                    builder: (context, cartModel, child) {
+                      return badges.Badge(
+                        position: badges.BadgePosition.topEnd(top: 0, end: 3),
+                        badgeContent: Text(
+                          cartModel.itemCount.toString(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
                           ),
-                          showBadge: cartModel.itemCount > 0,
-                          child: IconButton(
-                            icon: const Icon(Icons.shopping_cart),
-                            onPressed: () {
-                              // Chuyển hướng tới giỏ hàng
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Cart()),
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  ]
-                ]),
+                        ),
+                        showBadge: cartModel.itemCount > 0,
+                        child: IconButton(
+                          icon: const Icon(Icons.shopping_cart),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Cart(),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+              ],
+      ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.grey[100],
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
-        items: navigationState() == 1
-            ? const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.info_outlined),
-                  label: 'Giới Thiệu',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_bag_sharp),
-                  label: 'Sản Phẩm',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings_sharp),
-                  label: 'Cài Đặt',
-                ),
-              ]
-            : const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.info_outlined),
-                  label: 'Giới Thiệu',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_bag_sharp),
-                  label: 'Sản Phẩm',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings_sharp),
-                  label: 'Cài Đặt',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.logout_outlined),
-                  label: 'Đăng Nhập',
-                ),
-              ],
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info_outlined),
+            label: 'Giới Thiệu',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag_sharp),
+            label: 'Sản Phẩm',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_sharp),
+            label: 'Cài Đặt',
+          ),
+        ],
       ),
     );
   }
