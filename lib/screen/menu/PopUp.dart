@@ -1,3 +1,4 @@
+import 'package:app_ban_gao/screen/paypage/Paypage.dart';
 import 'package:flutter/material.dart';
 
 class Popup extends StatefulWidget {
@@ -135,8 +136,19 @@ class _PopupState extends State<Popup> {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
-                  // Thực hiện hành động mua ngay
+                  Navigator.pop(context); // Đóng Popup sau khi nhấn
+                  final selectedItem = widget.item;
+                  selectedItem['quantity'] =
+                      quantity; // Thêm số lượng vào sản phẩm
+
+                  // Chuyển đến trang Paypage với sản phẩm đã chọn
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          Paypage(selectedItems: [selectedItem]),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
