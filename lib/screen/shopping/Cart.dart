@@ -1,3 +1,4 @@
+import 'package:app_ban_gao/screen/paypage/Paypage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart'; // Import thư viện intl để định dạng số
@@ -168,35 +169,66 @@ class Cart extends StatelessWidget {
                       ),
                       // Nút thanh toán bên phải
                       ElevatedButton(
-                        onPressed: totalAmount > 0
-                            ? () {
-                                // Logic thanh toán
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      title:
-                                          const Text('Thanh toán thành công!'),
-                                      content: const Text(
-                                          'Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
+                        // onPressed: totalAmount > 0
+                        //     ? () {
+                        //         // Logic thanh toán
+                        //         showDialog(
+                        //           context: context,
+                        //           builder: (context) {
+                        //             return AlertDialog(
+                        //               title:
+                        //                   const Text('Thanh toán thành công!'),
+                        //               content: const Text(
+                        //                   'Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi!'),
+                        //               actions: [
+                        //                 TextButton(
+                        //                   onPressed: () {
+                        //                     Navigator.pop(context);
 
-                                            // Xóa các sản phẩm đã chọn khỏi giỏ hàng sau khi thanh toán
-                                            context
-                                                .read<CartModel>()
-                                                .removeSelectedItems();
-                                          },
-                                          child: const Text('OK'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
-                            : null, // Vô hiệu hóa nút nếu không có sản phẩm nào được chọn
+                        //                     // Xóa các sản phẩm đã chọn khỏi giỏ hàng sau khi thanh toán
+                        //                     context
+                        //                         .read<CartModel>()
+                        //                         .removeSelectedItems();
+                        //                   },
+                        //                   child: const Text('OK'),
+                        //                 ),
+                        //               ],
+                        //             );
+                        //           },
+                        //         );
+                        //       }
+                        //     : null, // Vô hiệu hóa nút nếu không có sản phẩm nào được chọn
+                        onPressed: () {
+                          final cartModel = context.read<CartModel>();
+
+                          // Lọc ra danh sách sản phẩm đã chọn từ giỏ hàng
+                          final selectedItems = cartModel.cartItems
+                              .asMap()
+                              .entries
+                              .where((entry) =>
+                                  cartModel.selectedItems[entry.key] == true)
+                              .map((entry) => entry.value)
+                              .toList();
+
+                          if (selectedItems.isNotEmpty) {
+                            // Chuyển sang trang Paypage và truyền danh sách sản phẩm đã chọn
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    Paypage(selectedItems: selectedItems),
+                              ),
+                            );
+                          } else {
+                            // Hiển thị thông báo nếu không có sản phẩm nào được chọn
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                    'Vui lòng chọn ít nhất một sản phẩm để thanh toán!'),
+                              ),
+                            );
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 32.0, vertical: 16.0),
