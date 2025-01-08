@@ -29,7 +29,7 @@ class _MyWidgetState extends State<LoginPage> {
 
   void _handleFacebookSignIn() {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Đăng nhập Facebook không được triển khai')),
+      const SnackBar(content: Text('Đăng nhập Facebook chưa được triển khai')),
     );
   }
 

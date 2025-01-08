@@ -4,12 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => CartModel(),
+  // Khởi chạy ứng dụng với cấu hình Provider
+  runApp(AppWithProviders());
+}
+
+class AppWithProviders extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CartModel()),
+        // Thêm các Provider khác tại đây nếu cần
+      ],
       child: const MyApp(),
-    ),
-  );
+    );
+  }
 }
 
 class MyApp extends StatefulWidget {
@@ -20,10 +29,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _currentTitle =
-      'Bán Gạo 2024'; // Đặt tiêu đề ban đầu là "Bán Gạo 2024"
+  String _currentTitle = 'Bán Gạo 2024'; // Tiêu đề ban đầu
 
-  // Hàm cập nhật tiêu đề khi điều hướng
+  // Hàm cập nhật tiêu đề
   void _updateTitle(String newTitle) {
     setState(() {
       _currentTitle = newTitle;
@@ -39,7 +47,6 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
         fontFamily: 'Times New Roman',
       ),
-      // Truyền _updateTitle cho các màn hình con để chúng có thể thay đổi tiêu đề
       home: Homescreen(
         title: _currentTitle,
         onTitleChange: _updateTitle,
