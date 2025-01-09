@@ -1,19 +1,6 @@
 import 'package:app_ban_gao/screen/login/LoginPage.dart';
 import 'package:app_ban_gao/screen/page/HomeScreen.dart';
 import 'package:flutter/material.dart';
-// import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
-// import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
-
-// void main() {
-//   // Require Hybrid Composition mode on Android.
-//   final GoogleMapsFlutterPlatform mapsImplementation =
-//       GoogleMapsFlutterPlatform.instance;
-//   if (mapsImplementation is GoogleMapsFlutterAndroid) {
-//     // Force Hybrid Composition mode.
-//     mapsImplementation.useAndroidViewSurface = true;
-//   }
-//   // ···
-// }
 
 class Setttingpage extends StatefulWidget {
   final bool isLoggedIn;
@@ -25,7 +12,8 @@ class Setttingpage extends StatefulWidget {
 }
 
 class _SetttingpageState extends State<Setttingpage> {
-  bool isDarkMode = false; // Biến kiểm soát chế độ tối
+  String _address =
+      "147/19 Đường Tân Lập 2 , Hiệp Phú ,Hồ Chí Minh"; // Địa chỉ mặc định
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +21,6 @@ class _SetttingpageState extends State<Setttingpage> {
       appBar: AppBar(title: const Text('Cài Đặt')),
       body: ListView(
         children: [
-          // Chế độ tối
-          SwitchListTile(
-            title: const Text('Chế độ tối'),
-            value: isDarkMode,
-            onChanged: (bool value) {
-              setState(() {
-                isDarkMode = value;
-              });
-            },
-          ),
-
           // Mục Tài Khoản
           const ListTile(title: Text("Tài Khoản")),
           Card(
@@ -68,16 +45,17 @@ class _SetttingpageState extends State<Setttingpage> {
 
           // Địa Chỉ
           const SizedBox(height: 10),
-          const Card(child: ListTile(title: Text('Địa Chỉ'))),
-
-          // Liên kết Thẻ Ngân Hàng
-          const SizedBox(height: 10),
-          const Card(child: ListTile(title: Text('Liên kết Thẻ Ngân Hàng'))),
+          Card(
+            child: ListTile(
+              title: const Text('Địa Chỉ'),
+              subtitle: Text(_address), // Hiển thị địa chỉ ở dưới tiêu đề
+            ),
+          ),
 
           // Mục Cài Đặt
           const SizedBox(height: 10),
           const ListTile(title: Text("Cài Đặt")),
-          const Card(child: ListTile(title: Text('Bảo Mật'))),
+
           Card(
             child: ListTile(
               title: const Text('Thông báo'),
@@ -91,6 +69,7 @@ class _SetttingpageState extends State<Setttingpage> {
               },
             ),
           ),
+
           // Đăng xuất
           if (widget.isLoggedIn)
             Card(
@@ -150,14 +129,6 @@ class _SetttingpageState extends State<Setttingpage> {
           const SizedBox(height: 10),
           const ListTile(title: Text("Khác")),
 
-          // Card(
-          //   child: ListTile(
-          //     title: const Text('Quản lý đơn hàng'),
-          //     onTap: () {
-          //       // Chuyển hướng đến màn hình quản lý đơn hàng
-          //     },
-          //   ),
-          // ),
           Card(
             child: ListTile(
               title: const Text('Trợ giúp & Yêu Cầu'),
@@ -198,18 +169,82 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(title: const Text('Thông Tin Cá Nhân')),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
-            Text('Username: $username'),
-            const SizedBox(height: 16),
-            Text('Email: $email'),
+            // Avatar section with username
+            CircleAvatar(
+              radius: 50,
+              backgroundColor: Colors.blueGrey,
+              child: Text(
+                username[0].toUpperCase(),
+                style: const TextStyle(
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+            ),
             const SizedBox(height: 20),
-            Text('Giới tính: $gender'),
-            const SizedBox(height: 16),
-            Text('Số điện thoại: $phoneNumber'),
-            const SizedBox(height: 16),
-            Text('Ngày sinh: $birthDate'),
+            // User Info
+            Row(
+              children: [
+                const Icon(Icons.person, color: Colors.blue, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  'Họ Tên: $username',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                const Icon(Icons.email, color: Colors.blue, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  'Email: $email',
+                  style: const TextStyle(fontSize: 16, color: Colors.black87),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                const Icon(Icons.transgender, color: Colors.blue, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  'Giới tính: $gender',
+                  style: const TextStyle(fontSize: 16, color: Colors.black87),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                const Icon(Icons.phone, color: Colors.green, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  'Số điện thoại: $phoneNumber',
+                  style: const TextStyle(fontSize: 16, color: Colors.black87),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                const Icon(Icons.cake, color: Colors.orange, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  'Ngày sinh: $birthDate',
+                  style: const TextStyle(fontSize: 16, color: Colors.black87),
+                ),
+              ],
+            ),
+            const SizedBox(height: 40),
           ],
         ),
       ),
@@ -243,65 +278,40 @@ class NotificationPage extends StatelessWidget {
   }
 }
 
-// class OrderManagementPage extends StatelessWidget {
-//   final List<String> orders = [
-//     'Đơn hàng 1: Gạo 5kg - Đang giao.',
-//     'Đơn hàng 2: Gạo 10kg - Đã giao.',
-//     'Đơn hàng 3: Gạo 3kg - Đang chuẩn bị.',
-//   ];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: const Text('Quản lý Đơn Hàng')),
-//       body: ListView.builder(
-//         itemCount: orders.length,
-//         itemBuilder: (context, index) {
-//           return Card(
-//             child: ListTile(
-//               title: Text(orders[index]),
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
-
 class HelpAndSupportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Trợ Giúp & Yêu Cầu')),
       body: const Padding(
-        padding: EdgeInsets.all(16.0), // Thêm khoảng cách từ các cạnh
+        padding: EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // Căn trái
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Vui lòng liên hệ với chúng tôi qua Email: ',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87, // Màu văn bản
+                color: Colors.black87,
               ),
             ),
-            SizedBox(height: 8), // Tạo khoảng cách giữa các phần
+            SizedBox(height: 8),
             Text(
               'bangaongon@bangaongon.com',
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.blue, // Màu sắc cho Email
-                decoration: TextDecoration.underline, // Gạch chân Email
+                color: Colors.blue,
+                decoration: TextDecoration.underline,
               ),
             ),
-            SizedBox(height: 16), // Tạo khoảng cách giữa các phần
+            SizedBox(height: 16),
             Text(
               'Hoặc qua số hotline: ',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87, // Màu văn bản
+                color: Colors.black87,
               ),
             ),
             SizedBox(height: 8),
@@ -309,9 +319,9 @@ class HelpAndSupportPage extends StatelessWidget {
               '0123456789 hay 0987654321',
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.purple, // Màu sắc cho số hotline
-                decoration: TextDecoration.underline, // Gạch chân Email
-                fontWeight: FontWeight.bold, // Làm nổi bật số điện thoại
+                color: Colors.purple,
+                decoration: TextDecoration.underline,
+                fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(height: 8),
@@ -319,8 +329,8 @@ class HelpAndSupportPage extends StatelessWidget {
               'để được hỗ trợ kịp thời',
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.black, // Màu sắc cho số hotline
-                fontWeight: FontWeight.bold, // Làm nổi bật số điện thoại
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],

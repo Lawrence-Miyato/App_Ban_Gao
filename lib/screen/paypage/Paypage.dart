@@ -20,7 +20,7 @@ class _PaypageState extends State<Paypage> {
   String paymentMethod = 'CreditCard'; // Lưu phương thức thanh toán đang chọn
 
   // Biến để theo dõi địa chỉ nhận hàng
-  String shippingAddress = "147/19 Tăng Lộc Hai";
+  String shippingAddress = "147/19 Đường Tân Lập 2 ,Hiệp Phú,Hồ Chí Minh";
   TextEditingController _addressController = TextEditingController();
 
   // Hàm tính tổng số tiền từ danh sách các sản phẩm đã chọn
