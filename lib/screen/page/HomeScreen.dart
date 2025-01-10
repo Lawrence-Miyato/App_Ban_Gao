@@ -1,5 +1,4 @@
 import 'package:app_ban_gao/screen/menu/Menu.dart';
-import 'package:app_ban_gao/screen/login/LoginPage.dart';
 import 'package:app_ban_gao/screen/page/FindPage.dart';
 import 'package:app_ban_gao/screen/page/HomePage.dart';
 import 'package:app_ban_gao/screen/page/SetttingPage.dart';

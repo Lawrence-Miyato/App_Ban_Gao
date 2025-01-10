@@ -1,5 +1,4 @@
 import 'package:app_ban_gao/screen/page/HomeScreen.dart';
-import 'package:app_ban_gao/screen/page/SetttingPage.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
