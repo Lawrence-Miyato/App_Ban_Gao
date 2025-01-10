@@ -113,7 +113,7 @@ class _SetttingpageState extends State<Setttingpage> {
           else
             Card(
               child: ListTile(
-                title: const Text('Đăng Xuất'),
+                title: const Text('Đăng Nhập'),
                 onTap: () {
                   Navigator.pushReplacement(
                     context,

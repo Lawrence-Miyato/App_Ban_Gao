@@ -61,7 +61,7 @@ class _HomescreenState extends State<Homescreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const Findpage(),
+        builder: (context) => const FindPage(),
       ),
     );
   }
