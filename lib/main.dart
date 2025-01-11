@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        scaffoldBackgroundColor: Colors.red[50],
+        // scaffoldBackgroundColor: Colors.red[50],
         useMaterial3: true,
         fontFamily: 'Times New Roman',
       ),

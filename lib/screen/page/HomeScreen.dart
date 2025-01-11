@@ -1,7 +1,7 @@
 import 'package:app_ban_gao/screen/menu/Menu.dart';
 import 'package:app_ban_gao/screen/page/FindPage.dart';
 import 'package:app_ban_gao/screen/page/HomePage.dart';
-import 'package:app_ban_gao/screen/page/SetttingPage.dart';
+import 'package:app_ban_gao/screen/setting/SetttingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;

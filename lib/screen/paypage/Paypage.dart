@@ -1,7 +1,8 @@
+import 'package:app_ban_gao/screen/setting/DetailIfo.dart';
 import 'package:app_ban_gao/screen/shopping/CartModel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+import 'package:provider/provider.dart'; // Import DetailInfo.dart để sử dụng userInfo
 
 class Paypage extends StatefulWidget {
   final List<Map<String, dynamic>> selectedItems;
@@ -16,11 +17,14 @@ class _PaypageState extends State<Paypage> {
   // Biến để theo dõi phương thức vận chuyển
   String shippingMethod = "Nhanh"; // Phương thức vận chuyển mặc định
 
-  // Biến để theo dõi phương thức thanh toán (đảm bảo chỉ một phương thức được chọn)
-  String paymentMethod = 'CreditCard'; // Lưu phương thức thanh toán đang chọn
+  // Biến để theo dõi phương thức thanh toán
+  String paymentMethod =
+      'CashOnDelivery'; // Lưu phương thức thanh toán đang chọn
 
-  // Biến để theo dõi địa chỉ nhận hàng
-  String shippingAddress = "147/19 Đường Tân Lập 2 ,Hiệp Phú,Hồ Chí Minh";
+  // Sử dụng địa chỉ từ DetailInfo.dart
+  String shippingAddress = userInfo.address; // Sử dụng địa chỉ từ userInfo
+
+  // TextEditingController cho TextField để nhập địa chỉ
   TextEditingController _addressController = TextEditingController();
 
   // Hàm tính tổng số tiền từ danh sách các sản phẩm đã chọn
@@ -45,7 +49,7 @@ class _PaypageState extends State<Paypage> {
   void initState() {
     super.initState();
     _addressController.text =
-        shippingAddress; // Gán giá trị mặc định cho TextField
+        shippingAddress; // Gán giá trị mặc định từ userInfo
   }
 
   @override
@@ -287,15 +291,13 @@ class _PaypageState extends State<Paypage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      elevation: 5.0,
-                      shadowColor: Colors.green.withOpacity(0.3),
                     ),
                     child: const Text(
                       'Xác nhận thanh toán',
                       style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

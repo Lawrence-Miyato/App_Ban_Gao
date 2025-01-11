@@ -1,6 +1,8 @@
+import 'package:app_ban_gao/screen/setting/DetailIfo.dart'; // Đảm bảo tên file là DetailInfo.dart
+import 'package:app_ban_gao/screen/setting/HelpAndSupportPage.dart';
+import 'package:flutter/material.dart';
 import 'package:app_ban_gao/screen/login/LoginPage.dart';
 import 'package:app_ban_gao/screen/page/HomeScreen.dart';
-import 'package:flutter/material.dart';
 
 class Setttingpage extends StatefulWidget {
   final bool isLoggedIn;
@@ -12,9 +14,6 @@ class Setttingpage extends StatefulWidget {
 }
 
 class _SetttingpageState extends State<Setttingpage> {
-  String _address =
-      "147/19 Đường Tân Lập 2 , Hiệp Phú ,Hồ Chí Minh"; // Địa chỉ mặc định
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +47,8 @@ class _SetttingpageState extends State<Setttingpage> {
           Card(
             child: ListTile(
               title: const Text('Địa Chỉ'),
-              subtitle: Text(_address), // Hiển thị địa chỉ ở dưới tiêu đề
+              subtitle:
+                  Text(userInfo.address), // Sử dụng địa chỉ từ DetailInfo.dart
             ),
           ),
 
@@ -273,68 +273,6 @@ class NotificationPage extends StatelessWidget {
             ),
           );
         },
-      ),
-    );
-  }
-}
-
-class HelpAndSupportPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Trợ Giúp & Yêu Cầu')),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Vui lòng liên hệ với chúng tôi qua Email: ',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'bangaongon@bangaongon.com',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.blue,
-                decoration: TextDecoration.underline,
-              ),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Hoặc qua số hotline: ',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              '0123456789 hay 0987654321',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.purple,
-                decoration: TextDecoration.underline,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'để được hỗ trợ kịp thời',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
