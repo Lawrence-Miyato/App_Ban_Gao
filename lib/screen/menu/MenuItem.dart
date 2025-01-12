@@ -56,4 +56,28 @@ final List<Map<String, dynamic>> menuItems = [
     'description':
         'Gạo phù sa ST21 Vua Gạo túi 5kg với hạt gạo dài, đều màu, được sản xuất bởi quy trình kiểm soát chất lượng nghiêm ngặt. Quy trình sản xuất hiện đại giúp các chất dinh dưỡng như vitamin B1, B2, B3, B5... và khoáng chất canxi, protein, sắt được giữ tối ưu trong hạt gạo. Khi nấu toả hương thơm nhẹ, hạt cơm chín mềm, dẻo, thơm nhẹ và vẫn ngon ngay cả khi để nguội.'
   },
+  {
+    'name': 'Gạo Jasmine Lotus Rice Gói 1kg',
+    'price': '25.000₫',
+    'image':
+        'https://csfood.vn/wp-content/uploads/2015/04/Gao-Jasmine-Lotus-Rice-Goi-1kg.jpg',
+    'description':
+        'Gạo Jasmine Lotus Rice được xay xát kỹ từ giống lúa Jasmine một loại lúa ngắn ngày được trồng chủ yếu ở vùng Đồng bằng Sông Cửu Long. Hạt gạo có kích thước lớn, dài, màu trắng trong, cho cơm dẻo, thơm nhẹ và ngọt cơm ngay cả khi để nguội. Sản phẩm được sản xuất dưới sự giám sát kỹ từ tất cả các khâu trong quy trình từ hạt giống tới hạt gạo và phân phối tới người tiêu dùng. Đặc biệt, gạo Jasmine Lotus Rice đảm bảo không có dư lượng các hóa chất độc hại, chứa nhiều chất chống oxy hóa, giàu khoáng chất như manesium, selenium giúp tạo năng lượng từ protein và tinh bột, hỗ trợ hệ thống miễn dịch và cân bằng lượng đường trong máu rất tốt cho người bị hen suyễn.'
+  },
+  {
+    'name': 'GẠO SỮA THƯỢNG HẠNG HOA LÚA, VỊ NGỌT SỮA, DẺO MỀM 1Kg',
+    'price': '50.000₫',
+    'image':
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRm2uSaKoqKTUNCnJz_dhdr7WfV4F8nGSiSDg&s',
+    'description':
+        'Gạo Sữa có hạt gạo nhỏ, màu trắng đục, không bạc bụng. Khi chín cơm mềm, dẻo vừa, thơm nhẹ. Khi cơm nguội vẫn giữ độ dẻo mềm, không bị khô cứng.'
+  },
+  {
+    'name': 'Nếp Cái Hoa Vàng 1kg',
+    'price': '150.000₫',
+    'image':
+        'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSvi6pynIUB5Jf_YWXiAeKVKQ7PmkzO6E2l87rBBUWCOTbwetQAlKZhshMLvV-Khl2DEU15M1uqxDRd8u7lWW2bxw',
+    'description':
+        'Nếp Cái Hoa Vàng hay còn gọi là nếp ả, nếp hoa vàng được sản xuất từ giống lúa nếp truyền thống nổi tiếng tại vùng đồng bằng trung du Bắc Bộ.'
+  },
 ];
